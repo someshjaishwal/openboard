@@ -1,0 +1,11 @@
+.dockerignore
+.git
+.gitignore
+**/node_modules
+**/.next
+**/dist
+apps/web
+apps/admin
+*.md
+.env
+.env.*

@@ -1,0 +1,19 @@
+{
+  "name": "openboard",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @openboard/api --filter @openboard/web --filter @openboard/admin dev",
+    "dev:api": "pnpm --filter @openboard/api dev",
+    "dev:web": "pnpm --filter @openboard/web dev",
+    "dev:admin": "pnpm --filter @openboard/admin dev",
+    "build": "pnpm -r --if-present build",
+    "db:up": "docker compose up -d --wait",
+    "db:generate": "pnpm --filter @openboard/db generate",
+    "db:migrate": "pnpm --filter @openboard/db migrate",
+    "db:seed": "pnpm --filter @openboard/db seed"
+  }
+}

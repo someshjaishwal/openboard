@@ -1,0 +1,278 @@
+:root {
+  --paper: #f3ead8;
+  --ink: #1f1710;
+  --muted: #6d5c4d;
+  --rule: #d9cbb3;
+  --accent: #c45c26;
+  --accent-dark: #9a3f12;
+  --chip: #efe4cf;
+  --card: #fffaf1;
+  --shadow: 4px 6px 0 #1f171014;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(circle at 12% 8%, #fff6e6 0, transparent 28%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 27px,
+      #e6d8bf55 28px
+    ),
+    var(--paper);
+  color: var(--ink);
+  font-family: Figtree, system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+.brand {
+  font-family: Fraunces, Georgia, serif;
+  font-optical-sizing: auto;
+}
+
+a {
+  color: inherit;
+}
+
+.shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 4rem;
+}
+
+.mast {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px solid var(--ink);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.pin {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px #c45c2644;
+}
+
+nav {
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a.active {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.who {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.hero {
+  padding: 2.2rem 0 1rem;
+}
+
+.eyebrow {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--accent-dark);
+  margin: 0 0 0.4rem;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  line-height: 1.1;
+  margin: 0 0 0.6rem;
+}
+
+.lede {
+  max-width: 38rem;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.toolbar,
+.card-meta,
+.card-actions,
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.toolbar {
+  justify-content: space-between;
+  margin: 0.5rem 0 1.25rem;
+}
+
+.filters button,
+.vote,
+.text-btn {
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.filters button.on,
+.vote.on {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.cta {
+  display: inline-block;
+  background: var(--accent);
+  color: #fffaf1;
+  text-decoration: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow);
+  padding: 1rem 1.1rem 0.9rem;
+  transform: rotate(-0.4deg);
+}
+
+.card:nth-child(2n) {
+  transform: rotate(0.5deg);
+}
+
+.card h2 {
+  font-size: 1.25rem;
+  margin: 0.4rem 0;
+}
+
+.card h2 a {
+  text-decoration: none;
+}
+
+.card p {
+  margin: 0 0 0.8rem;
+  color: var(--muted);
+}
+
+.chip {
+  background: var(--chip);
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.chip.shipped {
+  background: #d9ead3;
+}
+
+.chip.planned {
+  background: #f7e1b8;
+}
+
+.card-actions {
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.narrow {
+  max-width: 34rem;
+}
+
+.stack {
+  display: grid;
+  gap: 0.85rem;
+}
+
+label {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 500;
+}
+
+input,
+textarea {
+  font: inherit;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--rule);
+  background: #fffaf1;
+  color: var(--ink);
+}
+
+.error {
+  color: #9a1d1d;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.empty {
+  padding: 2rem 0;
+}
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.text-btn {
+  border: 0;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
