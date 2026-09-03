@@ -123,16 +123,19 @@ The API runs migrations on boot.
 ### 3. Cloudflare Pages (web)
 
 1. Pages → Create → connect the same repo.
-2. Framework: Vite. Because this is a pnpm monorepo, set:
+2. Because this is a pnpm monorepo, set:
 
-- **Root directory:** `/` (repo root)
+- **Root directory:** empty / `/` (repo root)
 - **Build command:** `pnpm install && pnpm --filter @openboard/web build`
 - **Build output:** `apps/web/dist`
+- **Deploy command** (Workers Builds / wrangler): `npx wrangler deploy`  
+  The root [`wrangler.toml`](wrangler.toml) points at `apps/web/dist`. Do not use a second `wrangler.toml` under `apps/web` — Wrangler 4 errors if it finds a workspace with no single target.
 
-3. Environment variable (Production): `VITE_API_URL=https://<your-railway-host>`
+3. Environment variable (Production): `VITE_API_URL=https://<your-railway-host>`  
+   This is baked in at **build** time. Rebuild after changing it.
 4. After the Pages URL exists, add it to Railway `CORS_ORIGINS` and redeploy the API.
 
-[`apps/web/wrangler.toml`](apps/web/wrangler.toml) is for local `wrangler pages dev`. [`apps/web/public/_redirects`](apps/web/public/_redirects) sends all routes to `index.html` so React Router works.
+[`apps/web/public/_redirects`](apps/web/public/_redirects) sends all routes to `index.html` so React Router works.
 
 ### 4. Vercel (admin)
 

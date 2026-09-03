@@ -1,0 +1,5 @@
+# Used by Cloudflare Pages when the deploy command runs from the repo root.
+# Do not add a second wrangler.toml under apps/ — Wrangler 4 then refuses to guess.
+name = "openboard-web"
+compatibility_date = "2026-09-01"
+pages_build_output_dir = "apps/web/dist"
