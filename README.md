@@ -123,13 +123,17 @@ The API runs migrations on boot.
 ### 3. Cloudflare Pages (web)
 
 1. Pages → Create → connect the same repo.
-2. Because this is a pnpm monorepo, set:
+2. This is a pnpm monorepo. **Do not leave Root directory as `/`** — Wrangler then scans the whole workspace and fails. Set:
 
-- **Root directory:** empty / `/` (repo root)
-- **Build command:** `pnpm install && pnpm --filter @openboard/web build`
-- **Build output:** `apps/web/dist`
-- **Deploy command:** `pnpm exec wrangler pages deploy apps/web/dist --project-name=openboard`  
-  Bare `wrangler` is not on PATH in Cloudflare’s deploy step. `pnpm exec` uses the copy installed by `pnpm install`. Change `--project-name` if the Pages project is not `openboard`.
+| Field | Value |
+| --- | --- |
+| **Root directory** | `apps/web` |
+| **Build command** | `cd ../.. && pnpm install && pnpm --filter @openboard/web build` |
+| **Build output directory** | `dist` |
+| **Deploy command** | *(leave empty)* |
+| **Version command** | *(leave empty)* |
+
+`cd ../..` goes to the repo root so pnpm can see the workspace. Vite still writes to `apps/web/dist`, which is `dist` relative to the root directory.
 
 3. Environment variable (Production): `VITE_API_URL=https://<your-railway-host>`  
    This is baked in at **build** time. Rebuild after changing it.
