@@ -15,7 +15,7 @@
     "db:generate": "pnpm --filter @openboard/db generate",
     "db:migrate": "pnpm --filter @openboard/db migrate",
     "db:seed": "pnpm --filter @openboard/db seed",
-    "pages:deploy": "wrangler pages deploy apps/web/dist --project-name=openboard"
+    "pages:deploy": "wrangler deploy -c apps/web/wrangler.toml"
   },
   "devDependencies": {
     "wrangler": "^4.129.0"

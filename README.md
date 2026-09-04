@@ -130,10 +130,10 @@ The API runs migrations on boot.
 | **Root directory** | `apps/web` |
 | **Build command** | `cd ../.. && pnpm install && pnpm --filter @openboard/web build` |
 | **Build output directory** | `dist` |
-| **Deploy command** | *(leave empty)* |
-| **Version command** | *(leave empty)* |
+| **Deploy command** | `pnpm exec wrangler deploy` |
+| **Version command** | `pnpm exec wrangler versions upload` |
 
-`cd ../..` goes to the repo root so pnpm can see the workspace. Vite still writes to `apps/web/dist`, which is `dist` relative to the root directory.
+This repo deploys as a **Worker with static assets** (`[assets]` in `apps/web/wrangler.toml`), not `wrangler pages deploy`. There is no Pages project named `openboard` on this account. `pnpm exec` is required because bare `wrangler` is not on PATH.
 
 3. Environment variable (Production): `VITE_API_URL=https://<your-railway-host>`  
    This is baked in at **build** time. Rebuild after changing it.
