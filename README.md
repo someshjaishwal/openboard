@@ -139,7 +139,7 @@ This repo deploys as a **Worker with static assets** (`[assets]` in `apps/web/wr
    This is baked in at **build** time. Rebuild after changing it.
 4. After the Pages URL exists, add it to Railway `CORS_ORIGINS` and redeploy the API.
 
-[`apps/web/public/_redirects`](apps/web/public/_redirects) sends all routes to `index.html` so React Router works.
+SPA deep links are handled by `not_found_handling = "single-page-application"` in `apps/web/wrangler.toml`. Do not add a Pages-style `/* /index.html` `_redirects` rule — Workers treat that as an infinite loop.
 
 ### 4. Vercel (admin)
 
