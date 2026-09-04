@@ -1,15 +1,34 @@
-export const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3100";
+export const API_URL = (import.meta.env.VITE_API_URL ?? "http://localhost:3100").replace(
+  /\/$/,
+  "",
+);
 
 async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
   const headers = new Headers(init.headers);
   if (init.body && !headers.has("Content-Type")) {
     headers.set("Content-Type", "application/json");
   }
-  const res = await fetch(`${API_URL}${path}`, {
-    ...init,
-    headers,
-    credentials: "include",
-  });
+
+  let res: Response;
+  try {
+    res = await fetch(`${API_URL}${path}`, {
+      ...init,
+      headers,
+      credentials: "include",
+    });
+  } catch {
+    throw new Error(
+      `Cannot reach API at ${API_URL}. Set VITE_API_URL to your Railway URL and rebuild.`,
+    );
+  }
+
+  const contentType = res.headers.get("content-type") ?? "";
+  if (!contentType.includes("application/json")) {
+    throw new Error(
+      `API at ${API_URL} returned ${contentType || "non-JSON"} for ${path}. Check VITE_API_URL.`,
+    );
+  }
+
   const data = (await res.json().catch(() => ({}))) as T & { error?: string };
   if (!res.ok) {
     throw new Error(data.error ?? `request failed (${res.status})`);

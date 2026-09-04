@@ -19,7 +19,7 @@ export function PostCard({
     <article className={`card status-${post.status}`}>
       <div className="card-meta">
         <span className={`chip ${post.status}`}>{labels[post.status] ?? post.status}</span>
-        <span className="muted">{post.author.name}</span>
+        <span className="muted">{post.author?.name ?? "Unknown"}</span>
       </div>
       <h2>
         <Link to={`/posts/${post.id}`}>{post.title}</Link>

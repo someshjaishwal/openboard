@@ -15,7 +15,7 @@ export function Home() {
   async function load(next: PublicPostStatus | "all" = status) {
     try {
       const data = await api.posts(next === "all" ? undefined : next);
-      setPosts(data.posts);
+      setPosts(Array.isArray(data.posts) ? data.posts : []);
       setError(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : "failed to load");
