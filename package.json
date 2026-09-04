@@ -14,6 +14,10 @@
     "db:up": "docker compose up -d --wait",
     "db:generate": "pnpm --filter @openboard/db generate",
     "db:migrate": "pnpm --filter @openboard/db migrate",
-    "db:seed": "pnpm --filter @openboard/db seed"
+    "db:seed": "pnpm --filter @openboard/db seed",
+    "pages:deploy": "wrangler pages deploy apps/web/dist --project-name=openboard"
+  },
+  "devDependencies": {
+    "wrangler": "^4.129.0"
   }
 }

@@ -128,8 +128,8 @@ The API runs migrations on boot.
 - **Root directory:** empty / `/` (repo root)
 - **Build command:** `pnpm install && pnpm --filter @openboard/web build`
 - **Build output:** `apps/web/dist`
-- **Deploy command** (Workers Builds / wrangler): `npx wrangler deploy`  
-  The root [`wrangler.toml`](wrangler.toml) points at `apps/web/dist`. Do not use a second `wrangler.toml` under `apps/web` — Wrangler 4 errors if it finds a workspace with no single target.
+- **Deploy command:** `pnpm exec wrangler pages deploy apps/web/dist --project-name=openboard`  
+  Bare `wrangler` is not on PATH in Cloudflare’s deploy step. `pnpm exec` uses the copy installed by `pnpm install`. Change `--project-name` if the Pages project is not `openboard`.
 
 3. Environment variable (Production): `VITE_API_URL=https://<your-railway-host>`  
    This is baked in at **build** time. Rebuild after changing it.
